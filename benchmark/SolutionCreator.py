@@ -48,10 +48,12 @@ def createChromosome(moves,length):
 """
 Get Fitness a problem 0 = ISS, 1 = JWST, 2 = Enterprise
 """
-def fitness(moves, problem):
+def fitness(moves, problem, createSubmission = False):
     probLength = [12000,60000,200000]
     problems = ['ISS', 'JWST','Enterprise']
     chromosome = createChromosome(moves,probLength[problem])
     udp = programmable_cubes_UDP(problems[problem])
-    create_submission("spoc-3-programmable-cubes","enterprise", chromosome,"2enterprise_inplace_solution.json","rule_based_approach","")
+
+    if createSubmission:
+        create_submission("spoc-3-programmable-cubes",problems[problem].lower(), chromosome,"2enterprise_inplace_solution.json","rule_based_approach","")
     return udp.fitness(chromosome)

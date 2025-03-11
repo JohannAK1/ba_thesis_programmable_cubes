@@ -1,5 +1,4 @@
 import time
-from animation.Animation import CubeAnimation
 from framework.programmable_cubes_UDP import ProgrammableCubes
 import numpy as np
 from csa.CommonConfigurator import CommonConfigurator

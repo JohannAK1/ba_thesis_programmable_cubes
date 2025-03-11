@@ -40,43 +40,6 @@ class ReachablePositions:
                 cubies.apply_single_update_step(self.cubeID,self.oppositeMove[i])
         return possiblePositions
 
-
-def get_all_reachable_positions(current_configuration, cubeID):
-    """
-    Returns all reachable positions for a cube given its id and current configuration.
-    """
-    sPos = np.copy(current_configuration[cubeID])
-    opposite_move = {0: 1, 1: 0, 2: 3, 3: 2, 4: 5, 5: 4}
-
-    def get_possible_positions(config):
-        possible_positions = []
-        cubies = ProgrammableCubes(config)
-        for i in range(6):
-            done = cubies.apply_single_update_step(cubeID, i)
-            if done == 1:
-                possible_positions.append((np.copy(cubies.cube_position[cubeID]), i))
-                cubies.apply_single_update_step(cubeID, opposite_move[i])
-        return possible_positions
-
-    def breadth_search(config, start_pos):
-        q = queue.Queue()
-        q.put(start_pos)
-        seen_positions = [(start_pos, -1)]
-        while not q.empty():
-            cur_pos = q.get()
-            # Update the configuration for the cube under consideration.
-            config[cubeID] = cur_pos
-            for possible in get_possible_positions(config):
-                pos = possible[0]
-                if not any(np.array_equal(pos, seen) for seen, _ in seen_positions):
-                    q.put(pos)
-                    seen_positions.append(possible)
-        return seen_positions
-
-    seen = breadth_search(np.copy(current_configuration), sPos)
-    # Return only the positions (not the move indices)
-    return [pos for pos, _ in seen]
-
 def movesToPositions(moves, initPos):
     cubes = ProgrammableCubes(np.copy(initPos))
     for cID, move in moves: 
@@ -87,21 +50,6 @@ def movesToPositions(moves, initPos):
             print("Cube ID: " + str(cID))
             print("Move: " + str(move))
             sys.exit()
-    return np.copy(cubes.cube_position)
-
-
-def movesToPositionsDebug(moves, initPos, gPos, cubeID, method):
-    cubes = ProgrammableCubes(np.copy(initPos))
-    for cID, move in moves: 
-        done = cubes.apply_single_update_step(cID, move)
-        if not done: 
-            print("Move could not be made")
-            print("Moves: " + str(moves))
-            print("Cube ID: " + str(cID))
-            print("Move: " + str(move))
-            saveErrorConfig(np.copy(initPos), cubeID, gPos, method)
-            return None
-
     return np.copy(cubes.cube_position)
 
 def getAverageCubeNeighbours(config):
@@ -150,9 +98,23 @@ def find_correct_cubes(initialConfiguration, targetConfiguration, initialTypes, 
                 common_indices.append(i)
     return common_indices
 
+def movesToPositionsDebug(moves, initPos, gPos, cubeID, method):
+    cubes = ProgrammableCubes(np.copy(initPos))
+    for cID, move in moves: 
+        done = cubes.apply_single_update_step(cID, move)
+        if not done: 
+            print("Move could not be made")
+            print("Moves: " + str(moves))
+            print("Cube ID: " + str(cID))
+            print("Move: " + str(move))
+            saveErrorConfig(np.copy(initPos), cubeID, gPos, method)
+            return None
+
+    return np.copy(cubes.cube_position)
+
+
 def getAllCubesOfType(type, typeList): 
     return [cubeID for cubeID,cube_type in enumerate(typeList) if cube_type == type]
-
 
 def hasTwoEqualCoords(pos1, pos2):
     return np.sum(pos1 == pos2) == 2

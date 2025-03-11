@@ -2,10 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import matplotlib.colors as mcolors
+from framework.programmable_cubes_UDP import ProgrammableCubes
 
 class CubeAnimation:
-    def __init__(self, t_store, cube_types1, num_steps, interval,name):
-        self.t_store = t_store
+    def __init__(self, moves, initConfig, cube_types1, num_steps, interval,name):
+        self.t_store = self.createStorage(moves, initConfig)
         self.cube_types1 = cube_types1
         self.num_steps = num_steps
         self.interval = interval
@@ -60,7 +61,7 @@ class CubeAnimation:
 
     def make_animation(self):
         # Create the animation
-        ani = FuncAnimation(self.fig, self.update, frames=np.arange(0, len(self.t_store), 1),
+        ani = FuncAnimation(self.fig, self.update, frames=np.arange(0, len(self.t_store), self.num_steps),
                             init_func=self.init, interval=self.interval, blit=False)
 
         ani.save('images/' + self.name + '.gif', writer='pillow')
@@ -69,3 +70,15 @@ class CubeAnimation:
         # Display a single frame's configuration without saving
         self.update(frame)
         plt.show()
+
+    def createStorage(self, moves, config):
+        cubes = ProgrammableCubes(np.copy(config))
+        storage = []
+
+        for cID, move in moves:
+            done = cubes.apply_single_update_step(cID, move)
+            storage.append(np.copy(cubes.cube_position))
+            if not done:
+                print("Failed to apply move, storage could not be created")
+                return storage
+        return storage

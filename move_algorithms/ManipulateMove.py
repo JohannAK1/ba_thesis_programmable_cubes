@@ -61,7 +61,7 @@ class ManipulateMove:
                 print("ManipulateMove: Space could not be freed")
         return None
 
-    def freeCubeAndSpaceMove(self,debug=True):
+    def freeCubeAndSpaceMove(self,debug=False):
         freeCubeMoves = self.freeCube()
         if(freeCubeMoves == None):
             print("Manipulate Move: Couldnt Free Cube!")

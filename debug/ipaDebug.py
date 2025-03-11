@@ -67,7 +67,6 @@ def loadErrorConfig(file_path):
         data = json.load(f)
     return data
 
-
 def createStorage(moves, config):
     cubes = ProgrammableCubes(np.copy(config))
     storage = []

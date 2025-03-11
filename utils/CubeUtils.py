@@ -60,22 +60,3 @@ def can_reach_target_n(target_pos, config,n):
 
 def calcDistance(cubePos, tarhetPos): 
     return np.linalg.norm(cubePos-tarhetPos)
-
-
-
-def differInOneAxis(cubePos1, cubePos2):
-    """
-    Checks if two positions differ in exactly one axis.
-    
-    Args:
-        cubePos1: First position [x, y, z]
-        cubePos2: Second position [x, y, z]
-        
-    Returns:
-        bool: True if positions differ in exactly one axis, False otherwise
-    """
-    differences = 0
-    for i in range(3):  # Check x, y, z coordinates
-        if cubePos1[i] != cubePos2[i]:
-            differences += 1
-    return differences == 1

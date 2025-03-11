@@ -1,14 +1,10 @@
 import numpy as np
-import queue
 from collections import Counter
 import math
 from csa.MoveOrder2 import MoveOrder
 from framework.programmable_cubes_UDP import ProgrammableCubes
 from csa.LineConfigurator import LineConfigurator
 from move_algorithms.MoverAStart import MoverAStar as Mover
-from move_algorithms.ManipulateMove import ManipulateMove
-from debug.ipaDebug import visualizeConfig
-from utils.ConfigurationUtils import getAllCubesOfType
 import sys
 from csa.FreeCubeCSA import FreeCubeCSA
 from ipa.LayerCubes import LayerCubes 
