@@ -60,7 +60,7 @@ The main components are:
 - Animation → Creates GIFs of the reconfiguration process 
 
 ## Robot Reconfiguration
-The robot reconfigures itself by pivoting its moudles, there are 6 diffrent possible pivoting commands: 
+The robot reconfigures itself by pivoting its modules, there are 6 diffrent possible pivoting commands: 
 
 - `0` and `1`: counter-clockwise and clockwise rotation in x-y plane (around z-axis).
 - `2` and `3`: counter-clockwise and clockwise rotation in y-z plane (around x-axis).
