@@ -49,7 +49,7 @@ Windows:
 ````
 python Main.py
 ````
-This test runs both algorithms to solve the ISS instance of the Programmable Cubes Challenge and generates to GIFs to visualize the reconfiguration process. A simple overview of the algorithms is provided below. 
+This test runs both algorithms to solve the ISS instance of the Programmable Cubes Challenge and generates to GIFs to visualize the reconfiguration process.
 
 ## Class overview
 The main components are: 
