@@ -152,7 +152,7 @@ class SinglePositionSaver:
         #ax.view_init(elev=90, azim=-90)
 
         # Remove axis, gridlines, and labels
-        ax.set_axis_off()
+        #ax.set_axis_off()
 
         # Save the figure with high DPI
         plt.savefig(save_path, dpi=dpi, bbox_inches='tight', pad_inches=0)

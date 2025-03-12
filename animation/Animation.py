@@ -47,7 +47,7 @@ class CubeAnimation:
         for pos, cube_type in zip(positions, self.cube_types1):
             xi, yi, zi = pos[0] - x_min + 1, pos[1] - y_min + 1, pos[2] - z_min + 1
             voxels[xi, yi, zi] = True
-            colors_grid[xi, yi, zi] = mcolors.to_rgba(self.colors[cube_type], alpha=0.8)
+            colors_grid[xi, yi, zi] = mcolors.to_rgba(self.colors[cube_type], alpha=0.9)
 
         self.ax.clear()
         self.ax.voxels(voxels, facecolors=colors_grid, edgecolor='k')
