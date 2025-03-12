@@ -79,7 +79,7 @@ This project implements a variety of algorithms to move a module to a specified 
 
 - **ManipulateMove**: Frees a module or target position by relocating any blocking, surrounding modules, then moves the module to the target position using one of the two mover classes. 
 - **Mover**: Uses a BFS approach to find a path for the module to the specified target position. 
-- **MoverAStar**: An A* variant of the mover algorithm that attempts to find a more optimal path.
+- **MoverAStar**: An A* variant of the mover algorithm that attempts to find the optimal path more quickly by guiding the search.
 
 To help debug these algorithms, you can visualize the movement sequences using ```debug/ipaDebug/visualizeMoves()```, which creates animations like the one below:  
 <img src="example_reconfigurations/visualizeMoves.gif" width="500" height="500">
